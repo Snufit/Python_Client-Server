@@ -4,7 +4,7 @@ import time
 import logging
 
 # Настройка логирования для отладки
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - [SERVER] - %(message)s')
 logger = logging.getLogger(__name__)
 
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
@@ -21,10 +21,12 @@ def main():
         station = server.add_station(common_address=1)
         logger.info(f"Station created with common_address=1")
         
-        # Добавление информационных объектов (IOA 1000-1999)
-        for ioa in range(1000, 2000):
+        # Добавление информационных объектов (IOA 1000-1009)
+        points = []
+        for ioa in range(1000, 1010):  # 10 точек для теста
             point = station.add_point(io_address=ioa, type=c104.Type.M_ME_NC_1)
-            point.on_receive(on_new_data)  # Установка обработчика новых данных
+            point.on_receive(on_new_data)  # Регистрация обработчика для каждой точки
+            points.append(point)
             logger.info(f"Point added: IOA={ioa}, type=M_ME_NC_1")
         
         # Запуск сервера

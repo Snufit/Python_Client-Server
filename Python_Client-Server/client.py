@@ -5,7 +5,7 @@ import random
 import logging
 
 # Настройка логирования для отладки
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - [CLIENT] - %(message)s')
 logger = logging.getLogger(__name__)
 
 def main():
@@ -22,7 +22,7 @@ def main():
         # Создание станции (Common Address = 1)
         station = connection.add_station(common_address=1)
         points = []
-        for ioa in range(1000, 1005):
+        for ioa in range(1000, 1010):  # Уменьшено до 10 точек для теста
             point = station.add_point(io_address=ioa, type=c104.Type.C_SE_NC_1)
             points.append(point)
         
@@ -31,13 +31,19 @@ def main():
         client.start()
         
         # Задержка для ожидания готовности сервера
-        time.sleep(10)  # Увеличено до 10 секунд для синхронизации
+        time.sleep(10)
         
         if not client.is_running:
             logger.error("Failed to connect to server")
             return
         
-        # Отправка 1000 измерений каждую секунду в течение 60 секунд
+        if connection.is_connected:
+            logger.info("Connection established successfully")
+        else:
+            logger.error("Connection not established")
+            return
+        
+        # Отправка измерений каждую секунду в течение 60 секунд
         for _ in range(60):
             start_time = time.time()
             for point in points:
