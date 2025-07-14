@@ -343,5 +343,30 @@
         "timestamp": 20,
         "cpu_percent": 28.2,
         "memory_percent": 37.2
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 4.0,
+        "memory_percent": 36.9
+    },
+    {
+        "timestamp": 2,
+        "cpu_percent": 2.1,
+        "memory_percent": 36.9
+    },
+    {
+        "timestamp": 8,
+        "cpu_percent": 1.4,
+        "memory_percent": 36.9
+    },
+    {
+        "timestamp": 14,
+        "cpu_percent": 0.9,
+        "memory_percent": 36.9
+    },
+    {
+        "timestamp": 20,
+        "cpu_percent": 29.2,
+        "memory_percent": 37.0
     }
 ]

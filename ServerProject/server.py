@@ -13,7 +13,7 @@ from logging_config import setup_resource_logger
 # Настройка логирования в файл (перезапись) и консоль
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - [СЕРВЕР] - %(message)s',
+    format='%(asctime)s - %(levelname)s - [SERVER] - %(message)s',
     handlers=[
         logging.FileHandler('server.log', mode='w', encoding='utf-8'),
         logging.StreamHandler()
