@@ -258,5 +258,65 @@
         "timestamp": 74,
         "cpu_percent": 2.1,
         "memory_percent": 36.4
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 7.3,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 2,
+        "cpu_percent": 1.4,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 8,
+        "cpu_percent": 2.1,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 14,
+        "cpu_percent": 0.5,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 20,
+        "cpu_percent": 26.5,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 26,
+        "cpu_percent": 28.2,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 32,
+        "cpu_percent": 32.2,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 38,
+        "cpu_percent": 24.8,
+        "memory_percent": 36.0
+    },
+    {
+        "timestamp": 44,
+        "cpu_percent": 30.5,
+        "memory_percent": 36.0
+    },
+    {
+        "timestamp": 50,
+        "cpu_percent": 29.4,
+        "memory_percent": 36.0
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 3.0,
+        "memory_percent": 36.9
+    },
+    {
+        "timestamp": 2,
+        "cpu_percent": 1.8,
+        "memory_percent": 37.0
     }
 ]

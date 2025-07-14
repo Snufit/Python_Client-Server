@@ -173,5 +173,45 @@
         "timestamp": 71,
         "cpu_percent": 1.2,
         "memory_percent": 36.4
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 22.9,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 17,
+        "cpu_percent": 18.5,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 23,
+        "cpu_percent": 22.8,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 29,
+        "cpu_percent": 31.3,
+        "memory_percent": 35.8
+    },
+    {
+        "timestamp": 35,
+        "cpu_percent": 50.4,
+        "memory_percent": 35.9
+    },
+    {
+        "timestamp": 41,
+        "cpu_percent": 30.1,
+        "memory_percent": 36.0
+    },
+    {
+        "timestamp": 47,
+        "cpu_percent": 31.2,
+        "memory_percent": 36.0
+    },
+    {
+        "timestamp": 53,
+        "cpu_percent": 25.6,
+        "memory_percent": 36.0
     }
 ]
