@@ -23,7 +23,7 @@ def monitor_resources(stop_event, prefix="SERVER"):
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
     """Обработчик новых данных для точки"""
     logger.debug(f"Point handler triggered for IOA={point.io_address}")
-    logger.info(f"Received: IOA={point.io_address}, value={point.value}, quality={point.quality}, time={point.time}")
+    logger.info(f"Received: IOA={point.io_address}, value={point.value}, quality={point.quality}")
     return c104.ResponseState.SUCCESS
 
 def main():
