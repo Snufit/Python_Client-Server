@@ -22,7 +22,7 @@ def main():
         # Создание станции (Common Address = 1)
         station = connection.add_station(common_address=1)
         points = []
-        for ioa in range(1000, 1010):  # Уменьшено до 10 точек для теста
+        for ioa in range(1000, 1010):  # 10 точек для теста
             point = station.add_point(io_address=ioa, type=c104.Type.C_SE_NC_1)
             points.append(point)
         
@@ -50,6 +50,7 @@ def main():
                 # Генерация случайного значения в диапазоне 0.0–100.0 (float)
                 value = random.uniform(0.0, 100.0)
                 point.value = value
+                logger.debug(f"Preparing to transmit: IOA={point.io_address}, value={value}")
                 point.transmit(cause=c104.Cot.SPONTANEOUS)
                 logger.info(f"Sent: IOA={point.io_address}, value={value}")
             

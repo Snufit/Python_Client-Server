@@ -9,6 +9,7 @@ logger = logging.getLogger(__name__)
 
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
     """Обработчик новых данных от клиента"""
+    logger.debug(f"Handler triggered for IOA={point.io_address}")
     logger.info(f"Received: IOA={point.io_address}, value={point.value}, quality={point.quality}, time={point.time}")
     return c104.ResponseState.SUCCESS
 
