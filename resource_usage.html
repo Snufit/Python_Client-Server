@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPU and RAM Usage Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.7.2/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .chart-container {
+            width: 80%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>CPU and RAM Usage Visualization</h1>
+    <div class="chart-container">
+        <canvas id="cpuChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="ramChart"></canvas>
+    </div>
+
+    <script>
+        // Инициализация графиков
+        const cpuChart = new Chart(document.getElementById('cpuChart'), {
+            type: 'line',
+            data: {
+                datasets: [
+                    { label: 'Server CPU (%)', data: [], borderColor: 'blue', backgroundColor: 'blue', fill: false, tension: 0.1 },
+                    { label: 'Client CPU (%)', data: [], borderColor: 'green', backgroundColor: 'green', fill: false, tension: 0.1 },
+                    { label: 'Max CPU (80%)', data: [{x: 0, y: 80}, {x: 80, y: 80}], borderColor: 'red', borderDash: [5, 5], pointRadius: 0, fill: false }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { type: 'linear', title: { display: true, text: 'Time (seconds)' }, min: 0, max: 80 },
+                    y: { title: { display: true, text: 'CPU Usage (%)' }, min: 0, max: 100 }
+                },
+                plugins: { title: { display: true, text: 'CPU Usage Over Time' }, legend: { position: 'top' } }
+            }
+        });
+
+        const ramChart = new Chart(document.getElementById('ramChart'), {
+            type: 'line',
+            data: {
+                datasets: [
+                    { label: 'Server RAM (%)', data: [], borderColor: 'blue', backgroundColor: 'blue', fill: false, tension: 0.1 },
+                    { label: 'Client RAM (%)', data: [], borderColor: 'green', backgroundColor: 'green', fill: false, tension: 0.1 },
+                    { label: 'Max RAM (80%)', data: [{x: 0, y: 80}, {x: 80, y: 80}], borderColor: 'red', borderDash: [5, 5], pointRadius: 0, fill: false }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: { type: 'linear', title: { display: true, text: 'Time (seconds)' }, min: 0, max: 80 },
+                    y: { title: { display: true, text: 'RAM Usage (%)' }, min: 0, max: 100 }
+                },
+                plugins: { title: { display: true, text: 'RAM Usage Over Time' }, legend: { position: 'top' } }
+            }
+        });
+
+        // Функция загрузки данных из JSON
+        async function updateCharts() {
+            try {
+                // Загрузка данных сервера
+                const serverResponse = await axios.get('server_resources.json', { params: { t: new Date().getTime() } });
+                const serverData = serverResponse.data || [];
+                const serverCpu = serverData.map(d => ({ x: d.timestamp, y: d.cpu_percent }));
+                const serverRam = serverData.map(d => ({ x: d.timestamp, y: d.memory_percent }));
+
+                // Загрузка данных клиента
+                const clientResponse = await axios.get('client_resources.json', { params: { t: new Date().getTime() } });
+                const clientData = clientResponse.data || [];
+                const clientCpu = clientData.map(d => ({ x: d.timestamp, y: d.cpu_percent }));
+                const clientRam = clientData.map(d => ({ x: d.timestamp, y: d.memory_percent }));
+
+                // Обновление графиков
+                cpuChart.data.datasets[0].data = serverCpu;
+                cpuChart.data.datasets[1].data = clientCpu;
+                ramChart.data.datasets[0].data = serverRam;
+                ramChart.data.datasets[1].data = clientRam;
+
+                cpuChart.update();
+                ramChart.update();
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+            }
+        }
+
+        // Первоначальная загрузка
+        updateCharts();
+
+        // Обновление каждые 5 секунд
+        setInterval(updateCharts, 5000);
+    </script>
+</body>
+</html>
