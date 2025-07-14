@@ -1,4 +1,5 @@
-﻿import c104
+﻿# -*- coding: utf-8 -*-
+import c104
 import time
 import logging
 import psutil
@@ -12,7 +13,7 @@ from logging_config import setup_resource_logger
 # Настройка логирования в файл (перезапись) и консоль
 logging.basicConfig(
     level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - [SERVER] - %(message)s',
+    format='%(asctime)s - %(levelname)s - [СЕРВЕР] - %(message)s',
     handlers=[
         logging.FileHandler('server.log', mode='w', encoding='utf-8'),
         logging.StreamHandler()
@@ -86,7 +87,7 @@ def main():
         logger.info(f"Станция создана с common_address=1")
         
         points = []
-        for ioa in range(1000): 
+        for ioa in range(1000):  # 1000 точек
             point = station.add_point(io_address=ioa, type=c104.Type.C_SE_NC_1)
             point.on_receive(on_new_data)
             points.append(point)
