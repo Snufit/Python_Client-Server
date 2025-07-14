@@ -1,5 +1,4 @@
-﻿# -*- coding: utf-8 -*-
-import c104
+﻿import c104
 import time
 import logging
 import psutil
