@@ -40,9 +40,9 @@ def main():
         station = connection.add_station(common_address=1)
         points = []
         for ioa in range(1000, 1005):  # 5 точек
-            point = station.add_point(io_address=ioa, type=c104.Type.C_SC_NA_1)
+            point = station.add_point(io_address=ioa, type=c104.Type.C_SE_NC_1)
             points.append(point)
-            logger.info(f"Point added: IOA={ioa}, type=C_SC_NA_1")
+            logger.info(f"Point added: IOA={ioa}, type=C_SE_NC_1")
         
         # Подключение к серверу
         logger.info("Connecting to server...")
@@ -69,12 +69,12 @@ def main():
         for i in range(60):
             start_time = time.time()
             for point in points:
-                # Генерация бинарного значения (True или False)
-                value = random.choice([True, False])
+                # Генерация значения float (0.0 до 1.0)
+                value = random.uniform(0.0, 1.0)
                 point.value = value
-                logger.debug(f"Preparing to transmit: IOA={point.io_address}, value={value}")
+                logger.debug(f"Preparing to transmit: IOA={point.io_address}, value={value:.3f}")
                 point.transmit(cause=c104.Cot.ACTIVATION)
-                logger.info(f"Sent: IOA={point.io_address}, value={value}")
+                logger.info(f"Sent: IOA={point.io_address}, value={value:.3f}")
             
             # Синхронизация для отправки каждую секунду
             elapsed = time.time() - start_time

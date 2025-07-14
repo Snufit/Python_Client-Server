@@ -23,7 +23,7 @@ def monitor_resources(stop_event, prefix="SERVER"):
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
     """Обработчик новых данных для точки"""
     logger.debug(f"Point handler triggered for IOA={point.io_address}")
-    logger.info(f"Received: IOA={point.io_address}, value={point.value}, quality={point.quality}")
+    logger.info(f"Received: IOA={point.io_address}, value={point.value:.3f}, quality={point.quality}")
     return c104.ResponseState.SUCCESS
 
 def main():
@@ -42,10 +42,10 @@ def main():
         # Добавление информационных объектов (IOA 1000-1004)
         points = []
         for ioa in range(1000, 1005):  # 5 точек
-            point = station.add_point(io_address=ioa, type=c104.Type.C_SC_NA_1)
+            point = station.add_point(io_address=ioa, type=c104.Type.C_SE_NC_1)
             point.on_receive(on_new_data)  # Регистрация обработчика для каждой точки
             points.append(point)
-            logger.info(f"Point added: IOA={ioa}, type=C_SC_NA_1")
+            logger.info(f"Point added: IOA={ioa}, type=C_SE_NC_1")
         
         # Запуск сервера
         logger.info("Starting server...")
