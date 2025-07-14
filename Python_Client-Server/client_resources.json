@@ -1,0 +1,112 @@
+[
+    {
+        "timestamp": 0,
+        "cpu_percent": 1.4,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 17,
+        "cpu_percent": 0.9,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 23,
+        "cpu_percent": 2.1,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 29,
+        "cpu_percent": 2.2,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 35,
+        "cpu_percent": 0.8,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 41,
+        "cpu_percent": 1.8,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 47,
+        "cpu_percent": 1.7,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 53,
+        "cpu_percent": 1.2,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 59,
+        "cpu_percent": 0.9,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 65,
+        "cpu_percent": 2.1,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 71,
+        "cpu_percent": 0.9,
+        "memory_percent": 35.0
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 1.6,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 17,
+        "cpu_percent": 2.6,
+        "memory_percent": 35.5
+    },
+    {
+        "timestamp": 23,
+        "cpu_percent": 4.2,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 29,
+        "cpu_percent": 1.6,
+        "memory_percent": 35.5
+    },
+    {
+        "timestamp": 35,
+        "cpu_percent": 2.9,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 41,
+        "cpu_percent": 1.7,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 47,
+        "cpu_percent": 1.4,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 53,
+        "cpu_percent": 1.2,
+        "memory_percent": 35.5
+    },
+    {
+        "timestamp": 59,
+        "cpu_percent": 2.0,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 65,
+        "cpu_percent": 2.3,
+        "memory_percent": 35.6
+    },
+    {
+        "timestamp": 71,
+        "cpu_percent": 1.4,
+        "memory_percent": 35.5
+    }
+]
