@@ -6,7 +6,7 @@ import psutil
 import threading
 
 # Настройка логирования для отладки
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - [SERVER] - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - [SERVER] - %(message)s')
 logger = logging.getLogger(__name__)
 
 def monitor_resources(stop_event, prefix="SERVER"):
@@ -18,7 +18,7 @@ def monitor_resources(stop_event, prefix="SERVER"):
         logger.info(f"Resource usage ({prefix}): CPU={cpu_percent:.1f}%, RAM={memory_percent:.1f}%")
         if cpu_percent > 80 or memory_percent > 80:
             logger.warning(f"High resource usage ({prefix}): CPU={cpu_percent:.1f}%, RAM={memory_percent:.1f}%")
-        time.sleep(10)  # Логируем каждые 10 секунд
+        time.sleep(5)  # Логируем каждые 5 секунд
 
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
     """Обработчик новых данных для точки"""
@@ -60,9 +60,9 @@ def main():
         monitor_thread.start()
         
         logger.info("Server is running, waiting for data...")
-        # Ожидание данных в течение 60 секунд
+        # Ожидание данных в течение 75 секунд
         start_time = time.time()
-        while time.time() - start_time < 60:
+        while time.time() - start_time < 75:
             logger.debug("Server still running...")
             time.sleep(1)
         

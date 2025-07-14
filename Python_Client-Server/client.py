@@ -7,7 +7,7 @@ import psutil
 import threading
 
 # Настройка логирования для отладки
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - [CLIENT] - %(message)s')
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - [CLIENT] - %(message)s')
 logger = logging.getLogger(__name__)
 
 def monitor_resources(stop_event, prefix="CLIENT"):
@@ -19,7 +19,7 @@ def monitor_resources(stop_event, prefix="CLIENT"):
         logger.info(f"Resource usage ({prefix}): CPU={cpu_percent:.1f}%, RAM={memory_percent:.1f}%")
         if cpu_percent > 80 or memory_percent > 80:
             logger.warning(f"High resource usage ({prefix}): CPU={cpu_percent:.1f}%, RAM={memory_percent:.1f}%")
-        time.sleep(10)  # Логируем каждые 10 секунд
+        time.sleep(5)  # Логируем каждые 5 секунд
 
 def main():
     # Инициализация переменных для мониторинга
