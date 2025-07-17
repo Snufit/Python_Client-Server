@@ -3248,5 +3248,20 @@
         "timestamp": 17,
         "cpu_percent": 27.6,
         "memory_percent": 43.6
+    },
+    {
+        "timestamp": 0,
+        "cpu_percent": 20.8,
+        "memory_percent": 24.7
+    },
+    {
+        "timestamp": 17,
+        "cpu_percent": 22.1,
+        "memory_percent": 24.7
+    },
+    {
+        "timestamp": 23,
+        "cpu_percent": 30.7,
+        "memory_percent": 24.7
     }
 ]
