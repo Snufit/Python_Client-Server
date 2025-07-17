@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Usage Visualization</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        canvas {
+            width: 100% !important;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+
+        #debug {
+            margin-top: 20px;
+            font-size: 14px;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>Resource Usage Visualization</h1>
+    <h2>CPU Usage</h2>
+    <canvas id="cpuChart"></canvas>
+    <h2>RAM Usage</h2>
+    <canvas id="ramChart"></canvas>
+    <div id="debug">Debug Info: Waiting for data...</div>
+
+    <script>
+        const cpuChart = new Chart(document.getElementById('cpuChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Client CPU (%)',
+                        data: [],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false,
+                        pointRadius: 3,
+                        spanGaps: true
+                    },
+                    {
+                        label: 'Server CPU (%)',
+                        data: [],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false,
+                        pointRadius: 3,
+                        spanGaps: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'CPU Usage (%)' } },
+                    x: { title: { display: true, text: 'Time (s)' } }
+                }
+            }
+        });
+
+        const ramChart = new Chart(document.getElementById('ramChart').getContext('2d'), {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [
+                    {
+                        label: 'Client RAM (%)',
+                        data: [],
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false,
+                        pointRadius: 3,
+                        spanGaps: true
+                    },
+                    {
+                        label: 'Server RAM (%)',
+                        data: [],
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        fill: false,
+                        pointRadius: 3,
+                        spanGaps: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: { beginAtZero: true, max: 100, title: { display: true, text: 'RAM Usage (%)' } },
+                    x: { title: { display: true, text: 'Time (s)' } }
+                }
+            }
+        });
+
+        async function updateCharts() {
+            let clientData = [];
+            let serverData = [];
+            let debugInfo = `Last Update: ${new Date().toLocaleTimeString()}\n`;
+
+            try {
+                const clientResponse = await fetch('client_resources.json', {
+                    cache: 'no-store',
+                    headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' }
+                });
+                if (!clientResponse.ok) throw new Error(`HTTP ${clientResponse.status}`);
+                const text = await clientResponse.text();
+                clientData = text.trim() ? JSON.parse(text) : [];
+                console.log('Client Data (raw):', text);
+                console.log('Client Data (parsed):', clientData);
+                debugInfo += `Client Data Points: ${clientData.length}\n`;
+                debugInfo += `Last Client Timestamp: ${clientData[clientData.length - 1]?.timestamp || 'N/A'}\n`;
+            } catch (error) {
+                console.error('Error fetching client_resources.json:', error);
+                debugInfo += `Client Error: ${error.message}\n`;
+            }
+
+            try {
+                const serverResponse = await fetch('server_resources.json', {
+                    cache: 'no-store',
+                    headers: { 'Cache-Control': 'no-cache, no-store, must-revalidate' }
+                });
+                if (!serverResponse.ok) throw new Error(`HTTP ${serverResponse.status}`);
+                const text = await serverResponse.text();
+                serverData = text.trim() ? JSON.parse(text) : [];
+                console.log('Server Data (raw):', text);
+                console.log('Server Data (parsed):', serverData);
+                debugInfo += `Server Data Points: ${serverData.length}\n`;
+                debugInfo += `Last Server Timestamp: ${serverData[serverData.length - 1]?.timestamp || 'N/A'}\n`;
+            } catch (error) {
+                console.error('Error fetching server_resources.json:', error);
+                debugInfo += `Server Error: ${error.message}\n`;
+            }
+
+            document.getElementById('debug').innerText = debugInfo;
+
+            if (clientData.length > 0 || serverData.length > 0) {
+                const uniqueClientData = clientData.filter((item, index, self) =>
+                    index === self.findIndex((t) => t.timestamp === item.timestamp)
+                );
+                const uniqueServerData = serverData.filter((item, index, self) =>
+                    index === self.findIndex((t) => t.timestamp === item.timestamp)
+                );
+
+                const allTimestamps = [
+                    ...uniqueClientData.map(d => d.timestamp),
+                    ...uniqueServerData.map(d => d.timestamp)
+                ].filter(t => t !== undefined && t !== null && !isNaN(t));
+                const minTimestamp = allTimestamps.length > 0 ? Math.min(...allTimestamps) : 0;
+                const maxTimestamp = allTimestamps.length > 0 ? Math.max(...allTimestamps) : Date.now() / 1000; // Используем текущее время как максимум
+                const timestamps = [];
+                for (let t = minTimestamp; t <= maxTimestamp; t += 5) {
+                    timestamps.push(t);
+                }
+
+                const getValue = (data, timestamp, key) => {
+                    const point = data.find(d => Math.abs(d.timestamp - timestamp) <= 2.5);
+                    return point ? point[key] : null;
+                };
+
+                const clientCpu = timestamps.map(t => getValue(uniqueClientData, t, 'cpu_percent') || 0);
+                const clientRam = timestamps.map(t => getValue(uniqueClientData, t, 'memory_percent') || 0);
+                const serverCpu = timestamps.map(t => getValue(uniqueServerData, t, 'cpu_percent') || 0);
+                const serverRam = timestamps.map(t => getValue(uniqueServerData, t, 'memory_percent') || 0);
+
+                console.log('Timestamps:', timestamps);
+                console.log('Client CPU:', clientCpu);
+                console.log('Client RAM:', clientRam);
+                console.log('Server CPU:', serverCpu);
+                console.log('Server RAM:', serverRam);
+
+                cpuChart.data.labels = timestamps;
+                cpuChart.data.datasets[0].data = clientCpu;
+                cpuChart.data.datasets[1].data = serverCpu;
+                ramChart.data.labels = timestamps;
+                ramChart.data.datasets[0].data = clientRam;
+                ramChart.data.datasets[1].data = serverRam;
+
+                cpuChart.update();
+                ramChart.update();
+            } else {
+                console.warn('No data available for charts');
+                debugInfo += 'No data available for charts\n';
+                document.getElementById('debug').innerText = debugInfo;
+            }
+        }
+
+        setTimeout(() => {
+            updateCharts();
+            setInterval(updateCharts, 5000);
+        }, 1000);
+    </script>
+</body>
+</html>

@@ -9,10 +9,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "ServerProject", "ServerProject\ServerProject.pyproj", "{F0FE262F-1307-497C-A24B-446E8D8E643A}"
 EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "start_visual", "start_visual\start_visual.pyproj", "{DFB45CAD-A66E-4A09-940F-1F46B579E446}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
 	ProjectSection(SolutionItems) = preProject
-		plot_resources.py = plot_resources.py
-		resource_usage.html = resource_usage.html
+		favicon.ico = favicon.ico
 	EndProjectSection
 EndProject
 Global
@@ -25,6 +26,8 @@ Global
 		{175CB042-03AE-4A01-904D-296B91F22069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0FE262F-1307-497C-A24B-446E8D8E643A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F0FE262F-1307-497C-A24B-446E8D8E643A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFB45CAD-A66E-4A09-940F-1F46B579E446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFB45CAD-A66E-4A09-940F-1F46B579E446}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

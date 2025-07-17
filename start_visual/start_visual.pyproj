@@ -2,18 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>175cb042-03ae-4a01-904d-296b91f22069</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>client.py</StartupFile>
+    <ProjectGuid>dfb45cad-a66e-4a09-940f-1f46b579e446</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>start_visualization.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>ClientProject</Name>
-    <RootNamespace>Python_Client-Server</RootNamespace>
-    <IsWindowsApplication>False</IsWindowsApplication>
-    <InterpreterId>Global|PythonCore|3.12</InterpreterId>
+    <Name>start_visual</Name>
+    <RootNamespace>start_visual</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,14 +21,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="client.py" />
-    <Compile Include="logging_config.py" />
+    <Compile Include="start_visualization.py" />
   </ItemGroup>
   <ItemGroup>
-    <InterpreterReference Include="Global|PythonCore|3.12" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="index.html" />
+    <Content Include="resource_usage.html" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
