@@ -71,7 +71,7 @@ def monitor_resources(stop_event, prefix="СЕРВЕР"):
         save_resource_data(cpu_percent, memory_percent, timestamp)
         if cpu_percent > 80 or memory_percent > 80:
             logger.warning(f"Высокая загрузка ресурсов ({prefix}): ЦП={cpu_percent:.1f}%, ОЗУ={memory_percent:.1f}%")
-        time.sleep(5)
+        time.sleep(0.5)
 
 def on_new_data(point: c104.Point, previous_info: c104.Information, message: c104.IncomingMessage) -> c104.ResponseState:
     """Обработчик новых данных для точки"""

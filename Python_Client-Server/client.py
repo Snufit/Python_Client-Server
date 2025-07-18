@@ -61,7 +61,7 @@ def save_resource_data(cpu_percent, memory_percent, timestamp, filename="client_
     except Exception as e:
         logger.error(f"Ошибка сохранения данных ресурсов: {str(e)}", exc_info=True)
 
-def monitor_resources(stop_event, prefix="КЛИЕНТ"):
+def monitor_resources(stop_event, prefix="CLIENT"):
     """Мониторинг загрузки ЦП и ОЗУ"""
     cpu_percent = psutil.cpu_percent(interval=1)
     memory = psutil.virtual_memory()
@@ -77,7 +77,7 @@ def monitor_resources(stop_event, prefix="КЛИЕНТ"):
         save_resource_data(cpu_percent, memory_percent, timestamp)
         if cpu_percent > 80 or memory_percent > 80:
             logger.warning(f"Высокая загрузка ресурсов ({prefix}): ЦП={cpu_percent:.1f}%, ОЗУ={memory_percent:.1f}%")
-        time.sleep(5)
+        time.sleep(0.5)
 
 def main():
     global start_time

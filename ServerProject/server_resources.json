@@ -1,38 +1,134 @@
 [
     {
         "timestamp": 0,
-        "cpu_percent": 6.9,
-        "memory_percent": 48.3,
+        "cpu_percent": 3.0,
+        "memory_percent": 46.7,
         "overload": false
     },
     {
         "timestamp": 2,
-        "cpu_percent": 3.5,
-        "memory_percent": 48.4,
+        "cpu_percent": 5.3,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 3,
+        "cpu_percent": 3.1,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 5,
+        "cpu_percent": 2.7,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 6,
+        "cpu_percent": 8.2,
+        "memory_percent": 46.7,
         "overload": false
     },
     {
         "timestamp": 8,
-        "cpu_percent": 8.5,
-        "memory_percent": 48.3,
+        "cpu_percent": 7.5,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 9,
+        "cpu_percent": 9.5,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 11,
+        "cpu_percent": 9.2,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 12,
+        "cpu_percent": 8.3,
+        "memory_percent": 46.7,
         "overload": false
     },
     {
         "timestamp": 14,
-        "cpu_percent": 9.5,
-        "memory_percent": 48.3,
+        "cpu_percent": 9.7,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 15,
+        "cpu_percent": 10.2,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 17,
+        "cpu_percent": 11.2,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 18,
+        "cpu_percent": 8.2,
+        "memory_percent": 46.7,
         "overload": false
     },
     {
         "timestamp": 20,
-        "cpu_percent": 9.1,
-        "memory_percent": 48.2,
+        "cpu_percent": 18.1,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 21,
+        "cpu_percent": 30.3,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 23,
+        "cpu_percent": 9.2,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 24,
+        "cpu_percent": 9.0,
+        "memory_percent": 46.7,
         "overload": false
     },
     {
         "timestamp": 26,
-        "cpu_percent": 9.4,
-        "memory_percent": 48.2,
+        "cpu_percent": 10.3,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 27,
+        "cpu_percent": 11.5,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 29,
+        "cpu_percent": 11.8,
+        "memory_percent": 46.8,
+        "overload": false
+    },
+    {
+        "timestamp": 30,
+        "cpu_percent": 11.0,
+        "memory_percent": 46.7,
+        "overload": false
+    },
+    {
+        "timestamp": 32,
+        "cpu_percent": 9.6,
+        "memory_percent": 46.7,
         "overload": false
     }
 ]
