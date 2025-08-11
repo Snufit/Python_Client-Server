@@ -11,7 +11,7 @@ import json
 import os
 
 # Создание директории logs, если она не существует
-log_dir = r'C:\Users\Gleb\source\repos\Python_Client-Server\logs'
+log_dir = r'C:\Users\Gleb\source\repos\Python_Client-Server\logs\logs'
 if not os.path.exists(log_dir):
     os.makedirs(log_dir)
 
