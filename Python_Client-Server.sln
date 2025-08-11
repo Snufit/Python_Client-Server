@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 	ProjectSection(SolutionItems) = preProject
 		favicon.ico = favicon.ico
 		logging_config.py = logging_config.py
+		plot_log.py = plot_log.py
 	EndProjectSection
 EndProject
 Global
