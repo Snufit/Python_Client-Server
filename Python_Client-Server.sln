@@ -10,10 +10,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решения", "Элементы решения", "{754FC069-D67B-A9D7-50A1-8D1CA196D8F1}"
 	ProjectSection(SolutionItems) = preProject
 		favicon.ico = favicon.ico
-		plot_log.py = plot_log.py
 	EndProjectSection
 EndProject
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "logs", "logs\logs.pyproj", "{B1829FBA-4D58-4BF4-B6DF-17B23E60CB17}"
+EndProject
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "run_all", "run_all\run_all.pyproj", "{D4532CA7-504D-4594-B289-34F6A56582FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +28,8 @@ Global
 		{F0FE262F-1307-497C-A24B-446E8D8E643A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1829FBA-4D58-4BF4-B6DF-17B23E60CB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B1829FBA-4D58-4BF4-B6DF-17B23E60CB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4532CA7-504D-4594-B289-34F6A56582FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4532CA7-504D-4594-B289-34F6A56582FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
