@@ -1,41 +1,42 @@
 ﻿# -*- coding: utf-8 -*-
 import subprocess
-import os
 import time
 
-def run_script(script_name):
+def run_script(script_name, cwd):
     """Запускает указанный скрипт в отдельном процессе"""
     process = subprocess.Popen(
         ['python', script_name],
-        cwd=r'C:\Users\Gleb\source\repos\Python_Client-Server\run_all',
+        cwd=cwd,
         creationflags=subprocess.CREATE_NEW_CONSOLE  # Открывает новое окно консоли на Windows
     )
     return process
 
 def main():
-    # Запуск сервера
+    server_dir = r'C:\Users\Gleb\source\repos\Python_Client-Server\ServerProject'
+    client_dir = r'C:\Users\Gleb\source\repos\Python_Client-Server\Python_Client-Server'
+    logs_dir = r'C:\Users\Gleb\source\repos\Python_Client-Server\logs'
+
+    # 1. Запуск сервера
     print("Запуск сервера...")
-    server_process = run_script('server.py')
-    
-    # Задержка перед запуском клиента
+    server_process = run_script('server.py', server_dir)
+
+    # 2. Задержка перед запуском клиента
     time.sleep(5)
-    
-    # Запуск клиента
+
+    # 3. Запуск клиента
     print("Запуск клиента...")
-    client_process = run_script('client.py')
-    
-    # Ожидание завершения клиента и сервера
+    client_process = run_script('client.py', client_dir)
+
+    # 4. Ожидание завершения клиента
     client_process.wait()
-    server_process.terminate()  # Завершаем сервер, если он ещё работает
+
+    # 5. Завершение сервера
+    server_process.terminate()
     server_process.wait()
-    
-    # Задержка перед запуском plot_log.py
-    print("Ожидание 10 секунд перед построением графика...")
-    time.sleep(10)
-    
-    # Запуск построения графика
+
+    # 6. Запуск построения графика после завершения обоих процессов
     print("Запуск построения графика...")
-    subprocess.run(['python', 'plot_log.py'], cwd=r'C:\Users\Gleb\source\repos\Python_Client-Server\logs')
+    subprocess.run(['python', 'plot_log.py'], cwd=logs_dir)
 
 if __name__ == "__main__":
     main()
